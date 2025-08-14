@@ -208,3 +208,6 @@ __marimo__/
 .env
 
 venv/
+logs/
+ANIME_RECOMMENDER.egg-info/
+chroma_db/
