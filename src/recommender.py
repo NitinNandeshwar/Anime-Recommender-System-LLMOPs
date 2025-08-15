@@ -17,7 +17,8 @@ class AnimeRecommender:
 
     def get_recommendations(self, query: str):
         try:
-            result = self.qa_chain({"query": query})
+            # result = self.qa_chain({"query": query})
+            result = self.qa_chain.invoke({"query": query})
             return result['result']
         except Exception as e:
             print("Error while getting recommendations", e)

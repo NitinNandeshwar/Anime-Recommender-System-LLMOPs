@@ -12,7 +12,7 @@ class AnimeRecommenderPipeline:
         try:
             logger.info("Initializing Anime Recommender Pipeline")
 
-            vector_builder = VectorStoreBuilder(csv_path='',persist_dir=persist_dir)
+            vector_builder = VectorStoreBuilder(csv_path='',perist_dir=persist_dir)
             retriever = vector_builder.load_vector_store().as_retriever()
 
             self.recommender= AnimeRecommender(retriever,GROQ_API_KEY,MODEL_NAME)
@@ -32,3 +32,19 @@ class AnimeRecommenderPipeline:
         except Exception as e:
             logger.error(f"Failed to get recommendations: {str(e)}")
             raise CustomException("Error while getting recommendations", e)
+        
+
+def main():
+    try:
+        pipeline = AnimeRecommenderPipeline()
+        query = "What are some good anime recommendations?"
+        recommendations = pipeline.recommend(query)
+        print(recommendations)
+        logger.info("Recommendations printed successfully")
+    except CustomException as ce:
+        logger.error(f"Custom Exception: {ce}")
+    except Exception as e:
+        logger.error(f"An unexpected error occurred: {e}")  
+
+if __name__ == "__main__":
+    main()
