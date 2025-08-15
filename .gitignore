@@ -210,4 +210,3 @@ __marimo__/
 venv/
 logs/
 ANIME_RECOMMENDER.egg-info/
-chroma_db/
